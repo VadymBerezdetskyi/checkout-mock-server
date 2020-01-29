@@ -10,8 +10,6 @@ script:
   - cd ..
 deploy:
   provider: firebase
-  token:
-    secure: YOUR ENCRYPTED token
 env:
   global:
     secure: m5VPiaZPDHPBzxzhtOyMxTkpXwfyki8NyP0aTIUEpf3LibC/0wkriuT4vmaWJF9NMikyQbPKlNosvLh+Oru8cgwoQdgYKeiDQhxx+jadfDfA2YcGaJjln9BTSEbJOjJrt3vSV50lXRcTZWbF1ESib1Skw0X+OPIknUzauT4S4WYfVldNdimnSg5QXuhnjRvN48HIODAGePlDRnIAdpN+jeFu/VWJaxINTVq4jAm3/G1gqRVMEbpixOMPrOISOKYQ2gbiYXzBkbw3ip6jD4in3LvDwLPCFAONlcHLVs8SQy4uiSmB76kTYJlaNNSjLss3xjKSGgoqWgHEYluRs8KuvstSYGIS2P/TpP4+Yd/QXm7udaQFpWKZg6xQTJlOU1VffeSAVVJ0khr47rvpgSTE98/7rZ5p4C+IkKLKGYjbY9FROU3cuBeEEIfdrYw1Kgx2n+Cm81AQFkLquFaGE5bbW+Vtgr/et4liyVjAGbKJccEtdLnGclZbKpa6nkhdBoYRkNgarwAW1UPm0X8SfxzKnZL8Dh/EyDrQhpMGtD4cFqlSO+Gb1hIc9dDbE5gsc2rpJJbV3NYBWOOYONseIzMvu7pEAtwYCm9k0rOnV06eMtg80bKbyWG+lwDFwhIS1EXOPa1fuBbP+bM7Pwq1gpnsQTBw24mNwVJt8EZTut1dSh8=
