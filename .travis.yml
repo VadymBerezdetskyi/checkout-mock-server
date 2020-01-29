@@ -1,13 +1,9 @@
 language: node_js
 node_js:
-  - 6
+  - 10
 branches:
   only:
     - master
-script:
-  - cd functions
-  - npm install
-  - cd ..
 deploy:
   provider: firebase
   token:
