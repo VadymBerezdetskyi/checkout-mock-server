@@ -4,11 +4,6 @@ node_js:
 branches:
   only:
     - master
-script:
-  - cd functions
-  - npm install
-  - whereis tsc
-  - cd ..
 deploy:
   provider: firebase
   token:
