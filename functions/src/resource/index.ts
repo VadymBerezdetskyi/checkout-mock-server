@@ -4,6 +4,9 @@ import paymentInvoice from './data/paymentInvoice';
 import paymentRequest from './data/paymentRequest';
 import prerequestData from './data/prerequestData';
 
+// import oft_payment_services from './data/payment_services';
+// import oft_payment_methods from './data/payment_methods';
+
 class ResourceProvider {
   constructor(params: object) {
     // this._params = params;
