@@ -11,8 +11,6 @@ export class InvoiceManager {
     this._builder
       .setStatus()
       .setActivePaymentRequest()
-      .setActivePayment()
-      .setCustomer()
-      .setCheckoutOptions();
+      .setActivePayment();
   }
 }

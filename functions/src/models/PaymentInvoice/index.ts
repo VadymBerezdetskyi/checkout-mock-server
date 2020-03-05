@@ -2,6 +2,8 @@ import ContextData from '../../resource/data/contextData';
 import { Payment } from "../Payment";
 import { Customer } from "../Customer";
 import { CommerceAccount } from "../CommerceAccount";
+import { CheckoutOptions } from "../CheckoutOptions";
+import { PaymentRequest } from "../PaymentRequest";
 
 export class PaymentInvoice {
   readonly amount: number = 100;
@@ -17,10 +19,10 @@ export class PaymentInvoice {
 
   commerce_account: CommerceAccount = new CommerceAccount();
   customer: Customer = new Customer();
+  checkout_options: CheckoutOptions = new CheckoutOptions();
 
   active_payment_request: PaymentRequest | null = null;
   active_payment: Payment | null = null;
-  checkout_options: string = '';
 
   status: string = 'created';
 
