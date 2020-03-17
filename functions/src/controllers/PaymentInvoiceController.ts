@@ -1,63 +1,34 @@
-import { DefaultInvoiceBuilder } from "../utils/InvoiceBuilder/DefaultInvoiceBuilder";
-import { InvoiceManager } from "../utils/InvoiceManager";
-// import { ProcessedInvoiceBuilder } from "../utils/InvoiceBuilder/ProcessedInvoiceBuilder";
+import { Request, Response } from 'express';
+import { Controller, Get, Post } from '@overnightjs/core';
+import { InvoiceStateEnum } from "../models/PaymentInvoice/enumerations/InvoiceStateEnum";
+import { PaymentInvoiceStatusDictionary } from "../models/PaymentInvoice/dictionaries/PaymentInvoiceState";
 
-export interface KeyValueString {
-  [key: string]: string;
-}
+@Controller('payment-invoices')
+export class PaymentInvoiceController {
+  @Get(':id')
+  get(req: Request, res: Response): any {
+    const id = req.params.id;
+    console.log(id, Object.values(InvoiceStateEnum).includes(id), Object.values(InvoiceStateEnum));
 
-interface RequestParams {
-  id: string;
-}
+    if (!Object.values(InvoiceStateEnum).includes(id)) {
+      return res.status(404).json({ message: 'Not found' });
+    }
 
-export interface StatusesFields extends KeyValueString {
-  status: string;
-  request_status: string;
-  payment_resolution: string;
-}
+    const attributes = PaymentInvoiceStatusDictionary.getFor(id);
 
-class PaymentInvoiceController {
-  static get(_request: { params: RequestParams }, response: any) {
-    const id =_request.params.id;
-
-    const builder = new DefaultInvoiceBuilder(id);
-    const manager = new InvoiceManager(builder);
-    manager.make();
-
-    const PaymentInvoice = { id, attributes: builder.getResult() };
-
-    return response.json(PaymentInvoice);
+    return res.status(200).json({ id, attributes });
   }
 
-  static acsHandler(_request: { params: RequestParams, query: StatusesFields }, response: any) {
-    // const { payment_resolution, request_status, status } = _request.query;
-    // const absentFields = [ payment_resolution, request_status, status ].filter(f => !f);
-    //
-    // if (absentFields.length) {
-      return response.status(404).json({
-        message: `Not Found`
-      });
-    // }
-    //
-    // const id =_request.params.id;
-    //
-    // const builder = new ProcessedInvoiceBuilder(id, _request.query);
-    // const manager = new InvoiceManager(builder);
-    // manager.make();
-    //
-    // const PaymentInvoice = { id, attributes: builder.getResult() };
-    //
-    // return response.json(PaymentInvoice);
-  }
+  @Post(':id/process')
+  process(req: Request, res: Response): void {
+    const id = req.params.id;
 
-  static process(_request: any, response: any) {
-    /**
-     * build redirect form with query params statuses
-     */
-    return response.status(404).json({
-      message: `Not Found`
-    });
+    if (!Object.values(InvoiceStateEnum).includes(id)) {
+      res.status(422).json({ message: 'Validation error' });
+    }
+
+    const attributes = PaymentInvoiceStatusDictionary.getFor(id);
+
+    res.status(200).json({ id, attributes });
   }
 }
-
-export default PaymentInvoiceController;

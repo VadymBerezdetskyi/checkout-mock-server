@@ -1,23 +1,24 @@
-const express = require('express');
-const bodyparser = require('body-parser');
-const cors = require('cors');
-const router = require('./router/index');
+import * as bodyParser from 'body-parser';
+import { Server } from '@overnightjs/core';
 
-const server = express();
-const corsPolicy = cors({ origin: true });
-const jsonParser = bodyparser.json();
-const urlencoded = bodyparser.urlencoded({ extended: false });
+import { PaymentInvoiceController } from "./controllers/PaymentInvoiceController";
 
-// Plugins
-server.use(corsPolicy);
-server.use(jsonParser);
-server.use(urlencoded);
+export default class CheckoutMockServer extends Server {
+  constructor() {
+    super();
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({extended: true}));
 
-// Router
-server.use('/', router);
+    this._setupControllers();
+  }
 
-// 404
-server.get('*', (_: any, response: any) => response.status(404).json({ success: false }));
+  private _setupControllers(): void {
+    super.addControllers([
+      new PaymentInvoiceController(),
+    ]);
+  }
 
-
-export default server;
+  public getListener() {
+    return this.app;
+  }
+}
