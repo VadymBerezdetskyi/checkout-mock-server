@@ -7,16 +7,18 @@ export class PaymentRequest {
   status!: string;
 
   constructor(state: InvoiceStateEnum) {
-    this._setStatus(state);
+    this._fromState(state);
   }
 
-  private _setStatus(state: InvoiceStateEnum) {
+  private _fromState(state: InvoiceStateEnum) {
     switch (state) {
       case InvoiceStateEnum.BackendError: this.status = 'captured'; break;
       case InvoiceStateEnum.Repay: this.status = 'authorize_failed'; break;
       case InvoiceStateEnum.Fail: this.status = 'authorize_failed'; break;
       case InvoiceStateEnum.Pending: this.status = 'capture_pending'; break;
       case InvoiceStateEnum.Success: this.status = 'captured'; break;
+      case InvoiceStateEnum.Autorepay: this.status = 'authorize_pending'; break;
+      case InvoiceStateEnum.Redirect: this.status = 'authorize_pending'; break;
       default: break;
     }
   }

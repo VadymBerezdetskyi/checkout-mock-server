@@ -1,4 +1,5 @@
 import { InvoiceStateEnum } from "../enumerations/InvoiceStateEnum";
+import { flowActionMock } from "./flowActionMock";
 
 export class Payment {
   service_detals: object = {
@@ -18,9 +19,12 @@ export class Payment {
 
   status!: string;
 
+  flow_action?: object;
+
   constructor(state: InvoiceStateEnum) {
     this._setStatus(state);
     this._setResolution(state);
+    this._setFlowAction(state);
   }
 
   private _setStatus(state: InvoiceStateEnum) {
@@ -30,13 +34,21 @@ export class Payment {
       case InvoiceStateEnum.Fail: this.status = 'authorize_failed'; break;
       case InvoiceStateEnum.Pending: this.status = 'capture_pending'; break;
       case InvoiceStateEnum.Success: this.status = 'captured'; break;
+      case InvoiceStateEnum.Autorepay: this.status = 'authorize_failed'; break;
+      case InvoiceStateEnum.Redirect: this.status = 'authorize_pending'; break;
       default: break;
     }
   }
 
   private _setResolution(state: InvoiceStateEnum) {
     if (state === InvoiceStateEnum.Repay) {
-      this.resolution = '';
+      this.resolution = 'insufficient_funds';
+    }
+  }
+
+  private _setFlowAction(state: InvoiceStateEnum) {
+    if (state === InvoiceStateEnum.Redirect || state === InvoiceStateEnum.Autorepay) {
+      this.flow_action = flowActionMock;
     }
   }
 }

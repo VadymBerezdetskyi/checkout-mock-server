@@ -5,6 +5,8 @@ import pendingInvoice from '../../data/invoiceByState/pending';
 import failInvoice from '../../data/invoiceByState/fail';
 import backendErrorInvoice from '../../data/invoiceByState/backendError';
 import repayInvoice from '../../data/invoiceByState/repay';
+import autorepayInvoice from '../../data/invoiceByState/autorepay';
+import redirectInvoice from '../../data/invoiceByState/redirect';
 
 export const PaymentInvoiceStateDict: {
   [K in InvoiceStateEnum]: object
@@ -14,4 +16,6 @@ export const PaymentInvoiceStateDict: {
   [InvoiceStateEnum.Fail]: failInvoice,
   [InvoiceStateEnum.BackendError]: backendErrorInvoice,
   [InvoiceStateEnum.Repay]: repayInvoice,
+  [InvoiceStateEnum.Redirect]: redirectInvoice,
+  [InvoiceStateEnum.Autorepay]: autorepayInvoice,
 };
