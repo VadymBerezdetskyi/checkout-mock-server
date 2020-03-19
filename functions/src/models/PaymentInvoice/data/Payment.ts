@@ -58,7 +58,7 @@ export class Payment {
       this.flow = 'card';
       this.flow_action = flowActionMock;
 
-      if (~state.indexOf('_get')) {
+      if (state.includes('_get')) {
         this.flow_action = flowActionGet;
       }
     }
