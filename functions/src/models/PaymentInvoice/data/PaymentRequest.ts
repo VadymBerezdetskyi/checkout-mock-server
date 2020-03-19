@@ -19,6 +19,8 @@ export class PaymentRequest {
       case InvoiceStateEnum.Success: this.status = 'captured'; break;
       case InvoiceStateEnum.Autorepay: this.status = 'authorize_pending'; break;
       case InvoiceStateEnum.Redirect: this.status = 'authorize_pending'; break;
+      case InvoiceStateEnum.AutorepayGet: this.status = 'authorize_pending'; break;
+      case InvoiceStateEnum.RedirectGet: this.status = 'authorize_pending'; break;
       default: break;
     }
   }
