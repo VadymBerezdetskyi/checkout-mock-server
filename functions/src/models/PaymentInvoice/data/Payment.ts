@@ -20,6 +20,7 @@ export class Payment {
   status!: string;
 
   flow_action?: object;
+  flow?: string;
 
   constructor(state: InvoiceStateEnum) {
     this._setStatus(state);
@@ -49,6 +50,7 @@ export class Payment {
   private _setFlowAction(state: InvoiceStateEnum) {
     if (state === InvoiceStateEnum.Redirect || state === InvoiceStateEnum.Autorepay) {
       this.flow_action = flowActionMock;
+      this.flow = 'hpp'
     }
   }
 }
