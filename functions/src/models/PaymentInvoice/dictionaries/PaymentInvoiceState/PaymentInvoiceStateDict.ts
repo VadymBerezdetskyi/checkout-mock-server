@@ -7,6 +7,8 @@ import backendErrorInvoice from '../../data/invoiceByState/backendError';
 import repayInvoice from '../../data/invoiceByState/repay';
 import autorepayInvoice from '../../data/invoiceByState/autorepay';
 import redirectInvoice from '../../data/invoiceByState/redirect';
+import redirectGetInvoice from '../../data/invoiceByState/redirectGet';
+import autorepayGetInvoice from '../../data/invoiceByState/autorepayGet';
 
 export const PaymentInvoiceStateDict: {
   [K in InvoiceStateEnum]: object
@@ -18,6 +20,6 @@ export const PaymentInvoiceStateDict: {
   [InvoiceStateEnum.Repay]: repayInvoice,
   [InvoiceStateEnum.Redirect]: redirectInvoice,
   [InvoiceStateEnum.Autorepay]: autorepayInvoice,
-  [InvoiceStateEnum.RedirectGet]: redirectInvoice,
-  [InvoiceStateEnum.AutorepayGet]: autorepayInvoice,
+  [InvoiceStateEnum.RedirectGet]: redirectGetInvoice,
+  [InvoiceStateEnum.AutorepayGet]: autorepayGetInvoice,
 };
