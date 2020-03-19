@@ -6,6 +6,8 @@ const InvoiceStateEnum = {
   Repay: 'repay',
   Redirect: 'redirect',
   Autorepay: 'autorepay',
+  RedirectGet: 'redirect_get',
+  AutorepayGet: 'autorepay_get',
 };
 
 type InvoiceStateEnum = typeof InvoiceStateEnum[keyof typeof InvoiceStateEnum];

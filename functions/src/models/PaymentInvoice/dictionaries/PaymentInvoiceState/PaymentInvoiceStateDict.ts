@@ -18,4 +18,6 @@ export const PaymentInvoiceStateDict: {
   [InvoiceStateEnum.Repay]: repayInvoice,
   [InvoiceStateEnum.Redirect]: redirectInvoice,
   [InvoiceStateEnum.Autorepay]: autorepayInvoice,
+  [InvoiceStateEnum.RedirectGet]: redirectInvoice,
+  [InvoiceStateEnum.AutorepayGet]: autorepayInvoice,
 };

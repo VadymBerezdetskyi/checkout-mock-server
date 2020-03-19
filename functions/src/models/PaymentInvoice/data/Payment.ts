@@ -1,5 +1,6 @@
 import { InvoiceStateEnum } from "../enumerations/InvoiceStateEnum";
 import { flowActionMock } from "./flowActionMock";
+import { flowActionGet } from "./flowActionGet";
 
 export class Payment {
   service_detals: object = {
@@ -48,9 +49,18 @@ export class Payment {
   }
 
   private _setFlowAction(state: InvoiceStateEnum) {
-    if (state === InvoiceStateEnum.Redirect || state === InvoiceStateEnum.Autorepay) {
+    if (
+      state === InvoiceStateEnum.Redirect
+      || state === InvoiceStateEnum.Autorepay
+      || state === InvoiceStateEnum.AutorepayGet
+      || state === InvoiceStateEnum.RedirectGet
+    ) {
+      this.flow = 'card';
       this.flow_action = flowActionMock;
-      this.flow = 'hpp'
+
+      if (~state.indexOf('_get')) {
+        this.flow_action = flowActionGet;
+      }
     }
   }
 }
