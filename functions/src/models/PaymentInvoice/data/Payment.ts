@@ -1,6 +1,9 @@
 import { InvoiceStateEnum } from "../enumerations/InvoiceStateEnum";
-import { flowActionMock } from "./flowActionMock";
-import { flowActionGet } from "./flowActionGet";
+import { flowActionMock } from "./flowAction/flowActionMock";
+import { flowActionGet } from "./flowAction/flowActionGet";
+import { MuchBetterFlowActionMock } from "./flowAction/MuchBetterFlowActionMock";
+import { UaxFlowActionMock } from "./flowAction/UaxFlowActionMock";
+import { SelcomFlowActionMock } from "./flowAction/SelcomFlowActionMock";
 
 export class Payment {
   service_detals: object = {
@@ -42,6 +45,10 @@ export class Payment {
       case InvoiceStateEnum.RedirectGet: this.status = 'authorize_pending'; break;
       default: break;
     }
+
+    if (state.includes('invoice')) {
+      this.status = 'authorize_pending';
+    }
   }
 
   private _setResolution(state: InvoiceStateEnum) {
@@ -63,6 +70,22 @@ export class Payment {
       if (state.includes('_get')) {
         this.flow_action = flowActionGet;
       }
+    }
+
+    if (state === InvoiceStateEnum.InvoiceMb) {
+      this.flow_action = MuchBetterFlowActionMock;
+    }
+
+    if (state === InvoiceStateEnum.InvoiceUax) {
+      this.flow_action = UaxFlowActionMock;
+    }
+
+    if (state === InvoiceStateEnum.InvoiceSelcom) {
+      this.flow_action = SelcomFlowActionMock;
+    }
+
+    if (state.includes('invoice')) {
+      this.flow = 'invoice';
     }
   }
 }

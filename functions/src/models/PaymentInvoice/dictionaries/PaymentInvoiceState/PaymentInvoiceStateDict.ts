@@ -9,6 +9,9 @@ import autorepayInvoice from '../../data/invoiceByState/autorepay';
 import redirectInvoice from '../../data/invoiceByState/redirect';
 import redirectGetInvoice from '../../data/invoiceByState/redirectGet';
 import autorepayGetInvoice from '../../data/invoiceByState/autorepayGet';
+import invoiceMb from '../../data/invoiceByState/invoiceMb';
+import invoiceSelcom from '../../data/invoiceByState/invoiceSelcom';
+import InvoiceUax from '../../data/invoiceByState/InvoiceUax';
 
 export const PaymentInvoiceStateDict: {
   [K in InvoiceStateEnum]: object
@@ -22,4 +25,7 @@ export const PaymentInvoiceStateDict: {
   [InvoiceStateEnum.Autorepay]: autorepayInvoice,
   [InvoiceStateEnum.RedirectGet]: redirectGetInvoice,
   [InvoiceStateEnum.AutorepayGet]: autorepayGetInvoice,
+  [InvoiceStateEnum.InvoiceMb]: invoiceMb,
+  [InvoiceStateEnum.InvoiceSelcom]: invoiceSelcom,
+  [InvoiceStateEnum.InvoiceUax]: InvoiceUax,
 };

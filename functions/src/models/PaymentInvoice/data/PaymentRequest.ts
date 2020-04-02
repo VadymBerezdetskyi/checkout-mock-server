@@ -23,5 +23,9 @@ export class PaymentRequest {
       case InvoiceStateEnum.RedirectGet: this.status = 'authorize_pending'; break;
       default: break;
     }
+
+    if (state.includes('invoice')) {
+      this.status = 'authorize_pending';
+    }
   }
 }

@@ -8,13 +8,13 @@ export class PaymentInvoiceController {
   @Get(':id')
   get(req: Request, res: Response): any {
     const id = req.params.id;
-    console.log(id, Object.values(InvoiceStateEnum).includes(id), Object.values(InvoiceStateEnum));
 
+    // @ts-ignore
     if (!Object.values(InvoiceStateEnum).includes(id)) {
       return res.status(404).json({ message: 'Not found' });
     }
 
-    const attributes = PaymentInvoiceStatusDictionary.getFor(id);
+    const attributes = PaymentInvoiceStatusDictionary.getFor(id as InvoiceStateEnum);
 
     return res.status(200).json({ id, attributes });
   }
@@ -23,11 +23,12 @@ export class PaymentInvoiceController {
   process(req: Request, res: Response): void {
     const id = req.params.id;
 
+    // @ts-ignore
     if (!Object.values(InvoiceStateEnum).includes(id)) {
       res.status(422).json({ message: 'Validation error' });
     }
 
-    const attributes = PaymentInvoiceStatusDictionary.getFor(id);
+    const attributes = PaymentInvoiceStatusDictionary.getFor(id as InvoiceStateEnum);
 
     res.status(200).json({ id, attributes });
   }

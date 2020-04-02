@@ -37,8 +37,8 @@ export const commerceAccountMock = {
       fields: [],
       context_fields: [],
     },
+    // TOKEN
     {
-      // service for accounts with type 'card'
       code: 'checkout_card_token',
       method: 'bank_card',
       currency: 'XXX',
@@ -76,6 +76,7 @@ export const commerceAccountMock = {
       ],
       context_fields: [],
     },
+    // REDIRECT
     {
       code: 'alipay_uah',
       method: 'alipay',
@@ -101,11 +102,76 @@ export const commerceAccountMock = {
       ],
       context_fields: [
         {
-          key: 'line1',
+          key: 'shipping_address.line1',
           type: 'string',
-          required: false,
+          required: true,
           label: {
             en: 'line1',
+          },
+          hint: {
+            en: 'line1 hint',
+          },
+          regexp: '',
+          position: 0,
+        },
+        {
+          key: 'shipping_address.line2',
+          type: 'string',
+          required: true,
+          label: {
+            en: 'line2',
+          },
+          hint: {
+            en: 'line1 hint',
+          },
+          regexp: '',
+          position: 0,
+        },
+        {
+          key: 'customer.email',
+          type: 'string',
+          required: true,
+          label: {
+            en: 'email',
+          },
+          hint: {
+            en: 'line1 hint',
+          },
+          regexp: '',
+          position: 0,
+        },
+        {
+          key: 'customer.phone',
+          type: 'string',
+          required: true,
+          label: {
+            en: 'phone',
+          },
+          hint: {
+            en: 'line1 hint',
+          },
+          regexp: '',
+          position: 0,
+        },
+        {
+          key: 'billing_address.line1',
+          type: 'string',
+          required: true,
+          label: {
+            en: 'line1',
+          },
+          hint: {
+            en: 'line1 hint',
+          },
+          regexp: '',
+          position: 0,
+        },
+        {
+          key: 'billing_address.line2',
+          type: 'string',
+          required: true,
+          label: {
+            en: 'line2',
           },
           hint: {
             en: 'line1 hint',
@@ -193,278 +259,133 @@ export const commerceAccountMock = {
         },
       ],
     },
+    // INVOICE
     {
-      code: 'neteller',
-      method: 'neteller',
-      currency: 'EUR',
-      total_amount: 105.5,
-      amount_min: 0.01,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-    },
-    {
-      code: 'vvvgiftcard',
-      method: 'vvvgiftcard',
-      currency: 'EUR',
-      total_amount: 105.5,
-      amount_min: 0.01,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-    },
-    {
-      code: 'vvvgiftcard',
-      method: 'vvvgiftcard',
+      code: 'muchbetter_usd_invoice',
       currency: 'USD',
+      fields: [
+        {
+          key: 'phone',
+          type: 'string',
+          label: {
+            en: 'Phone number',
+            ru: 'Номер телефона',
+            uk: 'Номер телефону',
+          },
+          hint: {
+            en: 'Enter phone number',
+            ru: 'Введите номер телефона MuchBetter кошелька',
+            uk: 'Введіть номер телефону MuchBetter гаманця',
+          },
+          regexp: '/^\\+\\d{1,15}$/',
+          required: true,
+          position: 1,
+        },
+      ],
+      flow: 'invoice',
+      method: 'muchbetter',
+      amount_min: 0.01,
+      amount_max: 999999,
       total_amount: 105.5,
+      context_fields: [],
+    },
+    {
+      code: 'muchbetter_eur_invoice',
+      currency: 'EUR',
+      total_amount: 105.5,
+      context_fields: [],
+      fields: [
+        {
+          key: 'phone',
+          type: 'string',
+          label: {
+            en: 'Phone number',
+            ru: 'Номер телефона',
+            uk: 'Номер телефону',
+          },
+          hint: {
+            en: 'Enter phone number',
+            ru: 'Введите номер телефона MuchBetter кошелька',
+            uk: 'Введіть номер телефону MuchBetter гаманця',
+          },
+          regexp: '/^\\+\\d{1,15}$/',
+          required: true,
+          position: 1,
+        },
+      ],
+      flow: 'invoice',
+      method: 'muchbetter',
+      amount_min: 0.01,
+      amount_max: 999999,
+    },
+    {
+      code: 'muchbetter_gbp_invoice',
+      currency: 'GBP',
+      total_amount: 105.5,
+      context_fields: [],
+      fields: [
+        {
+          key: 'phone',
+          type: 'string',
+          label: {
+            en: 'Phone number',
+            ru: 'Номер телефона',
+            uk: 'Номер телефону',
+          },
+          hint: {
+            en: 'Enter phone number',
+            ru: 'Введите номер телефона MuchBetter кошелька',
+            uk: 'Введіть номер телефону MuchBetter гаманця',
+          },
+          regexp: '/^\\+\\d{1,15}$/',
+          required: true,
+          position: 1,
+        },
+      ],
+      flow: 'invoice',
+      method: 'muchbetter',
+      amount_min: 0.01,
+      amount_max: 999999,
+    },
+    {
+      code: 'airtel_money_tzs_invoice',
+      currency: 'TZS',
+      total_amount: 105.5,
+      context_fields: [],
+      fields: [
+        {
+          key: 'phone',
+          type: 'string',
+          label: {
+            en: 'Phone number',
+            ru: 'Номер телефона',
+            uk: 'Номер телефону',
+          },
+          hint: {
+            en: 'Enter phone number',
+            ru: 'Введите номер телефона',
+            uk: 'Введіть номер телефону',
+          },
+          regexp: '/^\\+\\d{10,14}$/',
+          required: true,
+          position: 1,
+        },
+      ],
+      flow: 'invoice',
+      method: 'airtel_money',
       amount_min: 100,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
+      amount_max: 999999,
     },
     {
-      code: 'qiwi',
-      method: 'qiwi',
-      currency: 'USD',
-      total_amount: 105.5,
-      amount_min: 1,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-    },
-    {
-      code: 'qiwi',
-      method: 'qiwi',
+      code: 'uax_uah_invoice',
       currency: 'UAH',
-      total_amount: 105.5,
-      amount_min: 10,
+      flow: 'invoice',
+      method: 'uax',
+      amount_min: 0.01,
       amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-    },
-    {
-      code: 'qiwi',
-      method: 'qiwi',
-      currency: 'EUR',
       total_amount: 105.5,
-      amount_min: 1,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-    },
-    {
-      code: 'sepacredittransfer',
-      method: 'sepacredittransfer',
-      currency: 'EUR',
-      total_amount: 105.5,
-      amount_min: 1000,
-      amount_max: 100000,
-      flow: 'hpp',
-      fields: [
-        {
-          key: 'email',
-          type: 'email',
-          required: false,
-          label: {
-            en: 'email',
-          },
-          hint: {
-            en: 'email hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
-      context_fields: [
-        {
-          key: 'line1',
-          type: 'string',
-          required: false,
-          label: {
-            en: 'line1',
-          },
-          hint: {
-            en: 'line1 hint',
-          },
-          regexp: '',
-          position: 0,
-        },
-      ],
+      fields: [],
+      context_fields: [],
     },
   ],
   methods: [
@@ -539,76 +460,64 @@ export const commerceAccountMock = {
       hide: false,
     },
     {
-      code: 'neteller',
+      code: 'muchbetter',
       category: 'digital_wallet',
-      description: {
-        en:
-          'NETELLER is a digital wallet or electronic purse that allows consumers to pay online using a pre-loaded value securely stored in a virtual wallet. Consumers can preload their NETELLER wallet by using a credit or debit card or other alternative payment method.',
+      name: {
+        en: 'MuchBetter',
+        ru: 'MuchBetter',
+        uk: 'MuchBetter',
       },
-      name: { en: 'NETELLER' },
-
-      logo: 'https://static.openfintech.io/payment_methods/neteller/logo.svg?w=400&c=v0.59.26#w200',
-      icon: 'https://static.openfintech.io/payment_methods/neteller/icon.png?w=278&c=v0.59.26#w100',
-      metadata: {},
-      position: 0,
-      hide: false,
-    },
-    {
-      code: 'vvvgiftcard',
-      category: 'prepaid_voucher',
-      description: { en: 'VVV Giftcard, the online gift card for the Dutch E-commerce market' },
-
-      name: { en: 'VVV Giftcard' },
-
-      logo:
-        'https://static.openfintech.io/payment_methods/vvvgiftcard/logo.png?w=400&c=v0.59.26#w200',
-      icon:
-        'https://static.openfintech.io/payment_methods/vvvgiftcard/icon.png?w=278&c=v0.59.26#w100',
-      metadata: {},
-      position: 0,
-      hide: false,
-    },
-    {
-      code: 'rapipago',
-      category: 'cash_payment',
       description: {
-        en:
-          'Rapipago from Argentina is an offline payment method used for online purchases. Shoppers buy their goods and services online and pay offline at one the 6,000+ Rapipago payment locations.',
+        en: 'MuchBetter',
+        ru: 'MuchBetter',
+        uk: 'MuchBetter',
       },
-      name: { en: 'Rapipago' },
-
-      logo: 'https://static.openfintech.io/payment_methods/rapipago/logo.png?w=400&c=v0.59.26#w200',
-      icon: 'https://static.openfintech.io/payment_methods/rapipago/icon.png?w=278&c=v0.59.26#w100',
+      logo:
+        'https://static.openfintech.io/payment_methods/muchbetter/logo.svg?w=400&c=v0.59.26#w200',
+      icon:
+        'https://static.openfintech.io/payment_methods/muchbetter/icon.svg?w=278&c=v0.59.26#w100',
       metadata: {},
       position: 0,
       hide: false,
     },
     {
-      code: 'qiwi',
-      category: 'digital_wallet',
-      description: { en: 'Qiwi Wallet is an electronic wallet system co-branded with Visa.' },
-
-      name: { en: 'VISA QIWI Wallet' },
-
-      logo: 'https://static.openfintech.io/payment_providers/qiwi/logo.svg?w=400&c=v0.59.26#w100',
-      icon: 'https://static.openfintech.io/payment_providers/qiwi/icon.svg?w=278&c=v0.59.26#w100',
+      code: 'uax',
+      category: 'alternative',
+      name: {
+        en: 'UAX',
+        ru: 'UAX',
+        uk: 'UAX',
+      },
+      description: {
+        en: 'UAX',
+        ru: 'UAX',
+        uk: 'UAX',
+      },
+      logo: 'https://static.openfintech.io/payment_methods/uax/logo.svg?w=400&c=v0.59.26#w200',
+      icon: 'https://static.openfintech.io/payment_methods/uax/icon.svg?w=278&c=v0.59.26#w100',
       metadata: {},
-      position: 1,
+      position: 0,
       hide: false,
     },
     {
-      code: 'sepacredittransfer',
-      category: 'digital_wallet',
-      description: { en: 'Qiwi Wallet is an electronic wallet system co-branded with Visa.' },
-
-      name: { en: 'VISA QIWI Wallet' },
-
+      code: 'airtel_money',
+      category: 'mobile_payment',
+      name: {
+        en: 'Airtel money',
+        ru: 'Airtel money',
+        uk: 'Airtel money',
+      },
+      description: {
+        en: 'Airtel money',
+        ru: 'Airtel money',
+        uk: 'Airtel money',
+      },
       logo:
-        'https://static.openfintech.io/payment_methods/sepacredittransfer/logo.svg?w=400&c=v0.59.26#w200',
+        'https://static.openfintech.io/payment_methods/airtel_money/logo.png?w=400&c=v0.59.26#w200',
       icon:
-        'https://static.openfintech.io/payment_methods/sepacredittransfer/icon.svg?w=278&c=v0.59.26#w100',
+        'https://static.openfintech.io/payment_methods/airtel_money/icon.png?w=278&c=v0.59.26#w100',
       metadata: {},
-      position: 2,
+      position: 0,
       hide: false,
     },
   ],
